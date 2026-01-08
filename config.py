@@ -5,8 +5,8 @@ CONFIGURACIÓN GLOBAL DEL BOT DE TRADING
 # ------------------------------
 # TELEGRAM
 # ------------------------------
-TELEGRAM_TOKEN = "TU_TOKEN_DE_TELEGRAM"
-CHAT_ID = "TU_CHAT_ID"
+TELEGRAM_TOKEN = 8167233255:AAG3HlvHOKif61HOFPYCOUEUeIY4ovMbIQ8
+CHAT_ID = 389493035
 
 # ------------------------------
 # WHATSAPP Y EMAIL (opcional)
