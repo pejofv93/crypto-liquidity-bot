@@ -1,26 +1,60 @@
-# --------------------------
-# CONFIGURACIÓN GENERAL
-# --------------------------
+"""
+CONFIGURACIÓN GLOBAL DEL BOT DE TRADING
+"""
 
-# Telegram
-TELEGRAM_TOKEN = 8167233255:AAG3HlvHOKif61HOFPYCOUEUeIY4ovMbIQ8
-CHAT_ID = 389493035
+# ------------------------------
+# TELEGRAM
+# ------------------------------
+TELEGRAM_TOKEN = "TU_TOKEN_DE_TELEGRAM"
+CHAT_ID = "TU_CHAT_ID"
 
-# WhatsApp y Email (opcional)
+# ------------------------------
+# WHATSAPP Y EMAIL (opcional)
+# ------------------------------
 WHATSAPP_API_KEY = ""
 WHATSAPP_CHAT_ID = ""
 EMAIL_SENDER = ""
 EMAIL_PASSWORD = ""
 EMAIL_RECEIVER = ""
 
-# Umbrales y configuración de alertas
-WHALE_THRESHOLD = 500_000           # Volumen mínimo para considerar "movimiento grande"
-PERCENTAGE_CHANGE_THRESHOLD = 5     # % de cambio para alerta
-ALERT_REPEAT_MINUTES = 10           # Repetir alertas si aún aplican
+# ------------------------------
+# UMBRALES DE ALERTA
+# ------------------------------
+# Volumen mínimo para considerar "movimiento grande" (USD)
+WHALE_THRESHOLD = 500_000
 
-# Activos a monitorear
-ALL_CRYPTO_SYMBOLS = ["BTC", "ETH", "BNB", "ADA", "SOL"]  # agregar todos los que quieras
-ALL_STOCK_SYMBOLS = ["AAPL", "TSLA", "MSFT"]              # agregar todos los que quieras
+# % de cambio mínimo para considerarse significativo
+PERCENTAGE_CHANGE_THRESHOLD = 5
 
-# Indicadores técnicos y patrones
-INDICATORS = ["SMA", "EMA", "RSI", "MACD", "Bollinger"]  # se pueden usar en análisis futuros
+# Minutos antes de repetir una alerta si sigue vigente
+ALERT_REPEAT_MINUTES = 10
+
+# ------------------------------
+# INDICADORES TÉCNICOS (completos)
+# ------------------------------
+INDICATORS = [
+    # Medias móviles
+    "SMA", "EMA", "WMA", "DEMA", "TEMA",
+    # Osciladores
+    "RSI", "Stochastic", "MACD", "CCI", "ROC",
+    # Tendencia
+    "ADX", "ParabolicSAR", "Ichimoku",
+    # Volatilidad
+    "BollingerBands", "ATR", "DonchianChannel",
+    # Momentum
+    "Momentum", "OBV", "ForceIndex", "EaseOfMovement",
+    # Volumen
+    "VWAP",
+    # Estadísticos
+    "Williams %R", "ChaikinMoneyFlow"
+]
+
+# ------------------------------
+# LISTADO DINÁMICO DE ACTIVOS
+# ------------------------------
+ALL_CRYPTO_SYMBOLS = []  # se llenará desde load_symbols.py
+ALL_STOCK_SYMBOLS = []   # se llenará desde load_symbols.py
+
+# Máximos a cargar para no saturar
+MAX_CRYPTO_SYMBOLS = 2000
+MAX_STOCK_SYMBOLS = 5000
