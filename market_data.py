@@ -1,14 +1,8 @@
-import requests
-
-BINANCE_URL = "https://api.binance.com/api/v3/ticker/24hr"
-
-def get_market_data(symbol: str):
-    params = {"symbol": f"{symbol}USDT"}
-    response = requests.get(BINANCE_URL, params=params)
-    data = response.json()
-
-    return {
-        "price": float(data["lastPrice"]),
-        "volume": float(data["volume"]),
-        "price_change_percent": float(data["priceChangePercent"])
-    }
+def get_price_volume(symbol, market="crypto"):
+    if market == "crypto":
+        url = f"https://api.binance.com/api/v3/ticker/24hr?symbol={symbol}USDT"
+        data = requests.get(url).json()
+        return float(data["lastPrice"]), float(data["quoteVolume"])
+    elif market == "stock":
+        # Aquí implementar la API gratuita de Yahoo Finance o Alpha Vantage
+        pass
