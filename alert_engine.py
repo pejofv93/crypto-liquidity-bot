@@ -1,29 +1,17 @@
-from whale_alert import get_whale_transactions
 from telegram_bot import send_alert
+from whale_alert import get_large_movements
+import time
 
-# Umbral de porcentaje para considerar alerta urgente
-PERCENTAGE_CHANGE_THRESHOLD = 5  # puedes ajustar
+def evaluate_opportunities():
+    movements = get_large_movements()
+    for m in movements:
+        # Aquí la IA decide si es oportunidad según tu lógica avanzada
+        # Por ejemplo: combinar indicadores, patrones y flujo de liquidez
+        if m["volume"] > WHALE_THRESHOLD:
+            message = f"ALERTA: {m['asset']} Volumen: {m['volume']}, Precio: {m['price']}"
+            send_alert(message)
 
-def check_and_send_alerts():
-    whales = get_whale_transactions()
-    
-    for tx in whales:
-        symbol = tx["symbol"]
-        price = tx["price"]
-        volume = tx["volume_usd"]
-
-        # Mensaje de alerta
-        message = (
-            f"🚨 ALERTA DE MOVIMIENTO GRANDE 🚨\n"
-            f"Activo: {symbol}\n"
-            f"Precio actual: ${price}\n"
-            f"Volumen en USD: ${volume:,}\n"
-            f"Potencial impacto: Alto"
-        )
-
-        # Enviar alerta por Telegram
-        send_alert(message)
-
-# Prueba rápida
-if __name__ == "__main__":
-    check_and_send_alerts()
+# Loop 24/7
+while True:
+    evaluate_opportunities()
+    time.sleep(ALERT_REPEAT_MINUTES * 60)
